@@ -67,7 +67,7 @@ if [[ ! -f /db/init_done ]] ; then
             CURL_STATUS_CODE=$(curl -L -b /db/cookie.jar -o /db/planet.osm.bz2 -w "%{http_code}" "${OVERPASS_PLANET_URL}")
         done
           # for `file:///` scheme curl returns `000` HTTP status code
-        if [[ $CURL_STATUS_CODE = "200" || $CURL_STATUS_CODE = "000" ]]; then
+        if [[ $CURL_STATUS_CODE = "200" || $CURL_STATUS_CODE = "000" || $CURL_STATUS_CODE = "226" ]]; then
             (
               if [[ ! -z "${OVERPASS_PLANET_PREPROCESS+x}" ]]; then
                   echo "Running preprocessing command: ${OVERPASS_PLANET_PREPROCESS}"
